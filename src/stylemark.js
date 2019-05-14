@@ -3,10 +3,14 @@ var Parser = require('./parser');
 var generator = require('./generator');
 var getConfig = require('./getConfig');
 
+var jsExtensions = require('common-js-file-extensions').code;
+var mdExtensions = ['md'];
+var cssExtensions = ['css', 'less', 'scss', 'sass'];
+
 var extensions = [].concat(
-	require('common-js-file-extensions'), // JS
-	['md'],                               // Docs
-	['css', 'less', 'scss', 'sass']       // CSS
+	jsExtensions,
+	mdExtensions,
+	cssExtensions
 );
 
 var defaultMatchExtensions = new RegExp(`\\.(${extensions.join('|')})$`);

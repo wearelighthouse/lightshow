@@ -24,14 +24,11 @@ function getOptions(inputPath, configPath) {
 	for (let f = 0; f < filenames.length; f++) {
 		for (let e = 0; e < extensions.length; e++) {
 			var configFilePath = path.resolve(inputPath, filenames[f] + extensions[e]);
-
-      console.log("looking for: " + configFilePath);
-
 			var options = getConfig(configFilePath);
 
 			if (options) {
-				console.log('Found and loaded config file: ' + configFilePath);
         options.baseDir = findRoot(configFilePath);
+        console.log('Using config file: ' + configFilePath);
 				return options;
 			}
 		}
@@ -45,16 +42,11 @@ function getOptions(inputPath, configPath) {
 
 function getConfig(filepath) {
 	if (!fs.existsSync(filepath)) {
-    console.log("Not found");
 		return false;
 	}
 
-  console.log("Found! Reading...");
-
 	var contents = fs.readFileSync(filepath, 'utf8');
   var extension = filepath.split('.').pop();
-
-  console.log("Extension: " + extension);
 
 	if (extension === 'yaml' || extension === 'yml') {
 		return yaml.safeLoad(contents);
@@ -64,7 +56,7 @@ function getConfig(filepath) {
 		return JSON.parse(contents);
 	}
 
-  // The file path isn't yaml or json uhhh
+  // The file isn't .yaml or .yml or .json ruh roh
 	return false;
 }
 

@@ -2,17 +2,14 @@ var path = require('path');
 var Parser = require('./parser');
 var generator = require('./generator');
 var getConfig = require('./getConfig');
-var _ = require('lodash');
 
-var jsExtensions = require('common-js-file-extensions');
-var markdownExtensions = require('markdown-extensions');
-var cssExtensions = ['css', 'less', 'scss', 'sass'];
-var defaultMatchExtensions = _(jsExtensions.code)
-	.concat(markdownExtensions)
-	.concat(cssExtensions)
-	.thru(exts => new RegExp('\\.(' + exts.join('|') + ')$'))
-	.value();
+var extensions = [].concat(
+	require('common-js-file-extensions'), // JS
+	['md'],                               // Docs
+	['css', 'less', 'scss', 'sass']       // CSS
+);
 
+var defaultMatchExtensions = new RegExp(`\\.(${extensions.join('|')})$`);
 var defaultExcludeDirectories = ['.git', 'node_modules'];
 
 function generate(params) {
@@ -31,7 +28,7 @@ function generate(params) {
 	options.excludeDir = defaultExcludeDirectories.concat(options.excludeDir);
 
 	['match', 'excludeDir'].forEach(name => {
-		options[name] = _.isString(options[name]) ? new RegExp(options[name]) : options[name];
+		options[name] = typeof options[name] == 'string' ? new RegExp(options[name]) : options[name];
 	});
 
 	var parser = new Parser(options);

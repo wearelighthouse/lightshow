@@ -1,10 +1,12 @@
 var fs = require('fs');
+var findRoot = require('find-root');
+var path = require('path');
 var yaml = require('js-yaml');
 
-function getOptions(configPath) {
+function getOptions(inputPath, configPath) {
 
-	if (params.configPath) {
-		return getConfig(path.resolve(params.configPath));
+	if (configPath) {
+		return getConfig(path.resolve(configPath));
 	}
 
 	// Places the config file could be, from highest priority to lowest
@@ -21,12 +23,15 @@ function getOptions(configPath) {
 
 	for (let f = 0; f < filenames.length; f++) {
 		for (let e = 0; e < extensions.length; e++) {
-			var configFilePath = path.resolve(filenames[f] + extensions[e]);
+			var configFilePath = path.resolve(inputPath, filenames[f] + extensions[e]);
+
+      console.log("looking for: " + configFilePath);
 
 			var options = getConfig(configFilePath);
 
 			if (options) {
-				console.log('Found config file: ' + configFilePath);
+				console.log('Found and loaded config file: ' + configFilePath);
+        options.baseDir = findRoot(configFilePath);
 				return options;
 			}
 		}
@@ -40,16 +45,22 @@ function getOptions(configPath) {
 
 function getConfig(filepath) {
 	if (!fs.existsSync(filepath)) {
+    console.log("Not found");
 		return false;
 	}
 
-	var contents = fs.readFileSync(filepath, 'utf8');
+  console.log("Found! Reading...");
 
-	if (filepath.split('.').pop() === 'yml' || filepath.split('.').pop() === 'yaml') {
+	var contents = fs.readFileSync(filepath, 'utf8');
+  var extension = filepath.split('.').pop();
+
+  console.log("Extension: " + extension);
+
+	if (extension === 'yaml' || extension === 'yml') {
 		return yaml.safeLoad(contents);
 	}
 
-	if (filepath.split('.').pop() === 'json') {
+	if (extension === 'json') {
 		return JSON.parse(contents);
 	}
 

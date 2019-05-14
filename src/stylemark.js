@@ -3,7 +3,6 @@ var Parser = require('./parser');
 var generator = require('./generator');
 var getConfig = require('./getConfig');
 var _ = require('lodash');
-var findRoot = require('find-root');
 
 var jsExtensions = require('common-js-file-extensions');
 var markdownExtensions = require('markdown-extensions');
@@ -19,7 +18,7 @@ var defaultExcludeDirectories = ['.git', 'node_modules'];
 function generate(params) {
 	var input = path.resolve(params.input);
 	var output = path.resolve(params.output);
-	var options = getOptions(params.configPath);
+	var options = getConfig(input, params.configPath);
 
 	if (!options) {
 		console.error('Missing configuration file');
@@ -30,7 +29,6 @@ function generate(params) {
 	options.output = output;
 	options.match = options.match || defaultMatchExtensions;
 	options.excludeDir = defaultExcludeDirectories.concat(options.excludeDir);
-	options.baseDir = options.baseDir ? path.resolve(options.baseDir) : findRoot(configPath);
 
 	['match', 'excludeDir'].forEach(name => {
 		options[name] = _.isString(options[name]) ? new RegExp(options[name]) : options[name];

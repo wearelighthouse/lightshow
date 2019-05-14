@@ -1,8 +1,7 @@
-var fs = require('fs');
 var path = require('path');
-var yaml = require('js-yaml');
 var Parser = require('./parser');
 var generator = require('./generator');
+var getConfig = require('./getConfig');
 var _ = require('lodash');
 var findRoot = require('find-root');
 
@@ -20,10 +19,9 @@ var defaultExcludeDirectories = ['.git', 'node_modules'];
 function generate(params) {
 	var input = path.resolve(params.input);
 	var output = path.resolve(params.output);
-	var configPath = params.configPath ? path.resolve(params.configPath) : path.resolve(input, '.stylemark.yml');
-	var options = getConfig(configPath);
+	var options = getOptions(params.configPath);
 
-	if (!fs.existsSync(configPath)) {
+	if (!options) {
 		console.error('Missing configuration file');
 		process.exit(1);
 	}
@@ -47,15 +45,6 @@ function generate(params) {
 		}
 		generator.generate(docs, output, options);
 	});
-}
-
-function getConfig(filepath) {
-	if (!fs.existsSync(filepath)) {
-		return {};
-	}
-	var contents = fs.readFileSync(filepath, 'utf8');
-	var config = yaml.safeLoad(contents);
-	return config;
 }
 
 module.exports = generate;

@@ -1,22 +1,14 @@
 {
-  "name": "stylemark",
-  "version": "3.1.3",
-  "description": "A living style guide generator for everything.",
+  "name": "lightshow",
+  "version": "0.1.0",
+  "description": "A style guide generator based off stylemark.",
   "keywords": [
     "styleguide generator",
     "style guide generator",
     "living styleguide generator",
     "living style guide generator",
-    "react styleguide",
-    "react style guide",
-    "angular styleguide",
-    "angular style guide",
-    "ember styleguide",
-    "ember style guide",
     "css styleguide",
     "css style guide",
-    "less styleguide",
-    "less style guide",
     "sass styleguide",
     "sass style guide",
     "living styleguide",
@@ -29,14 +21,17 @@
     "test": "./node_modules/.bin/gulp test"
   },
   "bin": {
-    "stylemark": "bin/stylemark"
+    "lightshow": "bin/lightshow"
   },
-  "homepage": "https://github.com/nextbigsoundinc/stylemark",
-  "repository": "https://github.com/nextbigsoundinc/stylemark.git",
+  "homepage": "https://github.com/wearelighthouse/lightshow",
+  "repository": "https://github.com/wearelighthouse/lightshow.git",
   "bugs": {
-    "url": "https://github.com/nextbigsoundinc/stylemark/issues"
+    "url": "https://github.com/wearelighthouse/lightshow/issues"
   },
-  "author": "Mike Petrovich <michael.c.petrovich@gmail.com>",
+  "contributors": [
+    "Mike Petrovich <michael.c.petrovich@gmail.com>",
+    "John Evans <burntcustard@gmail.com>"
+  ],
   "license": "MIT",
   "engine": {
     "node": "6.x"

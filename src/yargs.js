@@ -1,0 +1,15 @@
+
+module.exports = require('yargs')
+	.usage('Usage: $0 -i <input> -o <output> -c <config> -w <delay> -b <port>')
+  .alias('i', 'input')
+	.alias('o', 'output')
+	.alias('c', 'config')
+	.alias('w', 'watch')
+	.alias('b', 'browser')
+	.describe('i', 'Directory to read from')
+	.describe('o', 'Directory to save the generated HTML in')
+	.describe('c', 'Filepath of the lightshow config file')
+	.describe('w', 'Watch for file changes in <input> and rebuild the style guide, waiting at least <delay> milliseconds between successive changes (default: 2000)')
+	.describe('b', 'Will open the style guide in your default browser at http://localhost:<port> and reload it when the style guide is updated. (default: 3000)')
+	.demandOption(['i','o'])
+  .argv;

@@ -79,6 +79,9 @@ var helpers = {
 	even: function(value) {
 		return value % 2 === 0;
 	},
+	empty: function(string, options) {
+		return (string === '' || string === []);
+	},
 	quote: function(string) {
 		return '"' + string + '"';
 	},

@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
-'use strict';
+var args = require('yargs')
+    .alias('i', 'input')
+		.usage('Usage: $0 -i [path] -o [path]')
+    .demandOption(['i','o'])
+		.help()
+    .argv;
 
-var args = require('yargs').argv;
 var chokidar = require('chokidar');
 var bs = require('browser-sync').create();
 var _ = require('lodash');

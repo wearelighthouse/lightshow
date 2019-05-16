@@ -1,7 +1,4 @@
 html {
+  /* Magic numbers to get the iframe's body the correct width */
   padding-right: calc(20vw + 120px);
-}
-
-body {
-  outline: 1px solid red;
 }

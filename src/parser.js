@@ -234,11 +234,7 @@ class Parser {
 		// Adds <example> tags for renderable HTML examples
 		_.forEach(component.getExamples(), (example, name) => {
 
-			//console.log(name);
-
 			_.forEach(example.blocks, (block) => {
-
-				//console.log(block);
 
 				var exampleClass = block.noBox ? 'no-box' : 'standard';
 
@@ -268,8 +264,6 @@ class Parser {
 
 		// Removes custom block annotations
 		description = description.replace(/```([^\.\s,]+)\.(\w+)(?:,? ?(\S+))?/g, '```$1.$2');
-
-		console.log(description);
 
 		return description;
 	}

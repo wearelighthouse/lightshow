@@ -167,11 +167,13 @@ class Generator {
 		doc.slug = _.kebabCase(doc.name);
 		doc.filepathRelativeToInput = path.relative(options.input, doc.filepath);
 
+		console.log(doc.slug);
+
 		if (doc.description) {
 			// Replaces <example> tags with <iframe> tags
 			doc.description = doc.description.replace(
 				/<example name="([^"]+)"( height="\d+")?><\/example>/g,
-				`<div class="i-example">
+				`<div class="i-example i-example--$1">
 					<h5 class="i-example__heading">
 						<a
 							href="${doc.slug}-$1.html"

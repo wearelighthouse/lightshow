@@ -5,7 +5,10 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<link href="_stylemark/css/all.css" rel="stylesheet">
+		{{#if options.cssFilename}}
+			<link rel="stylesheet" href="_stylemark/css/{{this}}.css">`;
+		{{/if}}
+
 		<link rel="icon" href="{{favicon}}" type="image/x-icon">
 
 		<!-- @todo Replace with custom icomoon/fontello bundle -->

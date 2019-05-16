@@ -31,7 +31,8 @@ function generate(params) {
 	options.output = output;
 	options.match = options.match || defaultMatchExtensions;
 	options.excludeDir = defaultExcludeDirectories.concat(options.excludeDir);
-	options.cssFilename = pickCssFile(options.exclude);
+	options.cssFilename = pickCssFile(options.theme.css);
+	console.log(options.cssFilename);
 
 	['match', 'excludeDir'].forEach(name => {
 		options[name] = typeof options[name] == 'string' ? new RegExp(options[name]) : options[name];

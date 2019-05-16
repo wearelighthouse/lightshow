@@ -1,24 +1,17 @@
-function pickCssFilename(exclude) {
+function pickCssFilename(css) {
 
-	if (typeof exclude === string) {
-		if (exclude === 'all') {
-			return '';
-		} else {
-			return 'no-' + excludes;
-		}
-	}
-
-	if (typeof exclude === array) {
-		if (exclude.includes('all')) {
+	if (css instanceof Array) {
+		if (css.includes('no-default') && css.includes('no-vendor')) {
+			css.splice(css.indexOf('no-default'), 1);
+			css.splice(css.indexOf('no-vendor'), 1);
 			return '';
 		}
-		if (exclude.includes('default') && exclude.includes('vendor')) {
-			return '';
-		}
-		if (exclude.includes('vendor')) {
+		if (css.includes('no-vendor')) {
+			css.splice(css.indexOf('no-vendor'), 1);
 			return 'no-vendor';
 		}
-		if (exclude.includes('default')) {
+		if (css.includes('no-default')) {
+			css.splice(css.indexOf('no-default'), 1);
 			return 'no-default';
 		}
 	}

@@ -55,6 +55,16 @@
 		{{#each options.examples.css}}
 			<link rel="stylesheet" href="{{this}}">
 		{{/each}}
+
+		{{#each example.blocks}}
+			{{#if noBox}}
+				<link rel="stylesheet" href="_stylemark/css/components/iframe-no-box.css">
+			{{/if}}
+			{{#if (compare name "==" "colors")}}
+				<link rel="stylesheet" href="_stylemark/css/components/iframe-colors.css">
+			{{/if}}
+		{{/each}}
+
 		{{#each options.examples.js}}
 			<script src="{{this}}"></script>
 		{{/each}}

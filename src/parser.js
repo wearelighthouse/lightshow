@@ -122,9 +122,11 @@ class Parser {
 
 		const addBlocktoExample = (name, language, content, options) => {
 			var block = {
+				name: name,
 				language: language,
 				content: content,
 				hidden: _.has(options, 'hidden'),
+				noBox: _.has(options, 'no-box')
 			};
 
 			blocksByExample[name] = blocksByExample[name] || [];
@@ -231,29 +233,43 @@ class Parser {
 
 		// Adds <example> tags for renderable HTML examples
 		_.forEach(component.getExamples(), (example, name) => {
-			var exampleHtml = example.options.height
-				? '<example name="' + name + '" height="' + example.options.height + '"></example>\n'
-				: '<example name="' + name + '"></example>\n';
 
-			description = description.replace(
-				new RegExp('```\\s*' + name + '\\.(html|jsx|handlebars|hbs)', 'gm'),
-				(match, language) => {
-					if (hasExample[name]) {
-						return '```' + name + '.' + language;
+			//console.log(name);
+
+			_.forEach(example.blocks, (block) => {
+
+				//console.log(block);
+
+				var exampleClass = block.noBox ? 'no-box' : 'standard';
+
+				var exampleHtml = example.options.height
+					? `<example name="${name}" class="${exampleClass}" height="${example.options.height}"></example>\n`
+					: `<example name="${name}" class="${exampleClass}"></example>\n`;
+
+				description = description.replace(
+					new RegExp('```\\s*' + name + '\\.(html|jsx|handlebars|hbs)', 'gm'),
+					(match, language) => {
+						if (hasExample[name]) {
+							return '```' + name + '.' + language;
+						}
+						else {
+							hasExample[name] = true;
+							return exampleHtml + '```' + name + '.' + language;
+						}
 					}
-					else {
-						hasExample[name] = true;
-						return exampleHtml + '```' + name + '.' + language;
-					}
-				}
-			);
+				);
+
+			});
+
 		});
 
 		// Removes hidden blocks
 		description = description.replace(/\n?```[^\n]+hidden(?:.*\n)+?```/g, '');
 
 		// Removes custom block annotations
-		description = description.replace(/```([^\.\s,]+)\.(\w+)(?:,(\S+))?/g, '```$1.$2');
+		description = description.replace(/```([^\.\s,]+)\.(\w+)(?:,? ?(\S+))?/g, '```$1.$2');
+
+		console.log(description);
 
 		return description;
 	}

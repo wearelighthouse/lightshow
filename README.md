@@ -1,6 +1,6 @@
-Stylemark &nbsp; [![npm version](https://badge.fury.io/js/stylemark.svg)](https://badge.fury.io/js/stylemark) [![Build Status](https://travis-ci.org/nextbigsoundinc/stylemark.svg?branch=master)](https://travis-ci.org/nextbigsoundinc/stylemark)
+Lightshow
 ===
-**A living style guide generator for everything.** CSS, LESS, SASS, JS, React, Angular, Ember&mdash;you name it.
+**A living style guide generator based on [Stylemark](https://github.com/nextbigsoundinc/stylemark)
 
 Document your style guide components in code comments or Markdown files, and Stylemark will generate a static HTML site with live, interactive components.
 
@@ -14,13 +14,14 @@ Document your style guide components in code comments or Markdown files, and Sty
 
 Installation
 ---
+Currently from local, but will be on npm eventually™️
+
 Requires Node 6.x+
+
 ```sh
-npm install -g stylemark
+$ git clone https://github.com/wearelighthouse/lightshow.git
+$ npm install -g lightshow/
 ```
-
-For a native app with built-in auto-updating/hot-reloading, see [Stylemark App](https://github.com/nextbigsoundinc/stylemark-app).
-
 
 Documenting style guide components
 ---
@@ -86,7 +87,7 @@ Generating the HTML style guide
 
 ### In Node.js
 ```js
-stylemark({ input, output, configPath });
+lightshow({ input, output, configPath });
 ```
 
 Name | Type | Description
@@ -130,38 +131,38 @@ stylemark -i path/to/source/code -o path/to/style/guide -w -b
 
 
 ### Configuration file
-The Stylemark configuration file is a [YAML](https://en.wikipedia.org/wiki/YAML) file that contains settings to use when generating the HTML style guide.
+The Lightshow configuration file is a [YAML](https://en.wikipedia.org/wiki/YAML) or [JSON](https://en.wikipedia.org/wiki/JSON) file that contains settings to use when generating the HTML style guide.
 
 **NOTE:** All paths are relative to root project directory of the configuration file (ie. the first ancestor directory that contains `package.json`).
 ```yaml
 name: Name of the style guide
 
-excludeDir: (optional) Regex pattern (in double quotes) or list of directories to exclude; .git and node_modules are always excluded
-match: (optional) Regex pattern or list of files to process; by default, common source files are included
+excludeDir: Regex pattern (in double quotes) or list of directories to exclude; .git and node_modules are always excluded
+match: Regex pattern or list of files to process; by default, common source files are included
 
-assets: (optional) List of relative file/directory paths to copy and mirror in the generated style guide
+assets: List of relative file/directory paths to copy and mirror in the generated style guide
 
 theme:
-    logo: (optional) Filepath or URL of your logo
-    css: (optional) List of any CSS files to include in the <head> of the generated styleguide; see Theming section
-    js: (optional) List of any JS files to include in the <body> of the generated styleguide; see Theming section
+    logo: Filepath or URL of your logo
+    css: List of any CSS files to include in the <head> of the generated styleguide; see Theming section
+    js: List of any JS files to include in the <body> of the generated styleguide; see Theming section
     sidebar:
-        background: (optional) Background of the sidebar; any valid CSS background property allowed, but hex colors must be quoted
-        textColor: (optional) Text color of the sidebar; any valid CSS color property allowed, but hex colors must be quoted
+        background: Background of the sidebar; any valid CSS background property allowed, but hex colors must be quoted
+        textColor: Text color of the sidebar; any valid CSS color property allowed, but hex colors must be quoted
 
 examples:
-    css: (optional) List of any CSS files to include in the <head> of each rendered example
-    js: (optional) List of any JS files to include in the <head> of each rendered example
-    doctypeTag: (optional) HTML doctype to use for each rendered example; defaults to "<!doctype html>"
-    htmlTag: (optional) <html> tag to use for each rendered example; defaults to "<html>"
-    bodyTag: (optional) <body> tag to use for each rendered example; defaults to "<body>"
-    headHtml: (optional) HTML to insert before the closing </head> tag for each rendered example
-    bodyHtml: (optional) HTML template of the example; the example's HTML content will be inserted in place of "{html}"
+    css: List of any CSS files to include in the <head> of each rendered example
+    js: List of any JS files to include in the <head> of each rendered example
+    doctypeTag: HTML doctype to use for each rendered example; defaults to "<!doctype html>"
+    htmlTag: <html> tag to use for each rendered example; defaults to "<html>"
+    bodyTag: <body> tag to use for each rendered example; defaults to "<body>"
+    headHtml: HTML to insert before the closing </head> tag for each rendered example
+    bodyHtml: HTML template of the example; the example's HTML content will be inserted in place of "{html}"
 
 webpackAppPath: For Webpack apps (esp. React, Angular, etc.), this is the `output.library` value in your webpack config
 emberAppName: For Ember apps, this is the name of the Ember app exported to the window object
 
-order: (optional) See Ordering section
+order: See Ordering section
 ```
 
 
@@ -188,11 +189,14 @@ order:
 #### Theming
 The look and feel of the generated styleguide can be customized in the `theme` section of the config.
 
+`theme -> css` is an optional single string, or an array of strings, which contains a list of extra theme CSS files to include. The magic strings `no-default`, `no-vendor`, or both of those, can be used to stop parts or all of the usual Lightshow CSS being included. See [`all.css`](src/assets/css/all.css), [`no-default.css`](src/assets/css/no-default.css), or [`no-vendor.css`](src/assets/css/no-vendor.css) for more details.
+
 For example:
 ```
 theme:
     css:
     - theme/theme.css
+    - no-default
 
     js:
     - theme/theme.js
@@ -201,7 +205,7 @@ theme:
         background: rgb(200, 0, 0)
         textColor: "#fff"
 ```
-With that configuration, Stylemark will include `theme/theme.css` and `theme/theme.js` in the generated styleguide. Note that the `background` and `textColor` styles defined in the `sidebar` section will override any similar styles set in `theme/theme.css`.
+With that configuration, Lightshow will include `theme/theme.css` and `theme/theme.js` in the generated styleguide, it won't load any of the default Lightshow styles, but will load the vendor (lazyframe, etc.) CSS. Note that the `background` and `textColor` styles defined in the `sidebar` section will override any similar styles set in `theme/theme.css`.
 
 Stylemark includes a number of CSS class hooks you can use to style specific elements. These CSS classes all start with `theme-` and include:
 - `theme-content`: The main scrollable page content

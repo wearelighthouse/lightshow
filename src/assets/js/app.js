@@ -38,7 +38,7 @@
 				resetSearch($input);
 			}
 
-			$input.parent('.c-search-input').toggleClass('has-value', !!query);
+			$input.parent('.c-search').toggleClass('has-value', !!query);
 
 			$('.c-page__sidebar [data-filter-value]').css('display', 'none');
 			$('.c-page__sidebar ' + selector).css('display', 'initial');
@@ -46,12 +46,12 @@
 
 		// Search filter reset
 		function resetSearch($input) {
-			$input.siblings('.c-sidebar-item-filter').val('');
-			$input.parent('.c-search-input').removeClass('has-value');
+			$input.siblings('.c-sidebar__item-filter').val('');
+			$input.parent('.c-search').removeClass('has-value');
 			$('.c-page__sidebar [data-filter-value]').css('display', 'block');
 		}
 
-		$('.c-search-input-reset').click(function() {
+		$('.c-search__reset').click(function() {
 			resetSearch($(this));
 		});
 

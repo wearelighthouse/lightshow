@@ -1,7 +1,11 @@
-.c-search-input {
+.c-search {
 	position: relative;
+	padding-left: 0;
+	width: 100%;
 }
-.c-search-input input {
+
+.c-search__input {
+	width: 100%;
 	height: 2.3em;
 	padding-left: 48px;
 	font-size: 18px;
@@ -14,34 +18,40 @@
 	opacity: 0.5;
 	transition: ease 125ms;
 }
-.c-search-input input:focus {
+
+.c-search__input:focus {
 	color: inherit;
 	background: rgba(0, 0, 0, 0.1);
 	box-shadow: none;
 	outline: none;
 	opacity: 1;
 }
-.c-search-input input::-webkit-input-placeholder {
+
+.c-search__input::-webkit-input-placeholder {
 	color: inherit;
 }
-.c-search-input input::-moz-placeholder {
+
+.c-search__input::-moz-placeholder {
 	color: inherit;
 }
-.c-search-input input::placeholder {
+
+.c-search__input::placeholder {
 	color: inherit;
 }
-.c-search-input .search-input-icon {
+
+.c-search__search-icon {
 	position: absolute;
 	top: 50%;
 	left: 22px;
 	transform: translateY(-50%);
 	opacity: 0.5;
 }
-.c-search-input input:focus ~ .search-input-icon {
+
+.c-search__input:focus ~ .c-search__search-icon {
 	opacity: 1;
 }
 
-.c-search-input-reset {
+.c-search__reset {
 	display: block;
 	position: absolute;
 	left: 16px;
@@ -58,19 +68,21 @@
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
-.c-search-input-reset:focus {
+
+.c-search__reset:focus {
 	color: inherit;
 	outline: none;
 }
-.c-search-input input:focus ~ .c-search-input-reset {
+
+.c-search__input:focus ~ .c-search__reset {
 	opacity: 1;
 }
 
-.c-search-input-reset,
-.c-search-input.has-value .search-input-icon {
+.c-search__reset,
+.c-search.has-value .c-search__search-icon {
 	display: none;
 }
 
-.c-search-input.has-value .c-search-input-reset {
+.c-search.has-value .c-search__reset {
 	display: block;
 }

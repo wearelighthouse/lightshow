@@ -1,13 +1,13 @@
-<h1 class="i-sidebar-title h4 mt-4 theme-sidebar-header">
+<h1 class="c-sidebar__header">
 	{{#if logo}}
-		<img class="i-sidebar-logo mr-2 theme-sidebar-header-logo" src="{{logo}}" height="40" alt="">
+		<img class="c-sidebar__logo" src="{{logo}}" height="40" alt="">
 	{{/if}}
-	<span class="theme-sidebar-header-title">{{name}}</span>
+	<span class="c-sidebar__title">{{name}}</span>
 </h1>
 
-<div class="relative mt-3 mb-2 px-0 theme-sidebar-search">
-	<div class="i-search-input">
-		<input id="search-filter" name="filter" type="search" placeholder="Search" class="form-control i-sidebar-item-filter">
+<div class="c-sidebar__search c-search">
+	<div class="c-search__input">
+		<input id="search-filter" name="filter" type="search" placeholder="Search" class="form-control c-sidebar-item-filter">
 		<label for="search-filter" class="search-input-icon icon-search"></label>
 		<button type="button" class="i-search-input-reset" aria-label="Clear">
 			<i class="icon-cross"></i>
@@ -15,16 +15,16 @@
 	</div>
 </div>
 
-<div class="theme-sidebar-categories">
+<div class="c-sidebar__categories">
 	{{#each groups}}
-		<div class="i-sidebar-list-group theme-sidebar-category">
+		<div class="c-sidebar__category">
 
 			<h5
-				class="pt-4 mb-1 theme-sidebar-category-title"
+				class="c-sidebar__category__title"
 				data-filter-value="{{#each docs}} {{name}} {{/each}}"
 			>
-				<a href="#category-{{slug}}" class="i-sidebar-list-item">
-					<b>{{key}}</b>
+				<a href="#category-{{slug}}" class="c-sidebar__item">
+					{{key}}
 				</a>
 			</h5>
 
@@ -32,7 +32,7 @@
 				{{#each docs}}
 					<a
 						href="#{{slug}}"
-						class="i-sidebar-list-item theme-sidebar-element"
+						class="c-sidebar__item"
 						data-filter-value="{{name}}"
 					>
 						<span>{{name}}</span>
@@ -44,13 +44,13 @@
 	{{/each}}
 </div>
 
-<div class="i-sidebar-filter-no-results i-muted i-pad-horiz-2 theme-sidebar-search-no-results">
+<div class="c-sidebar__filter--no-results">
 	No matches.
 </div>
 
 {{#unless (empty sidebar.footer)}}
-	<div class="row no-gutters mt-auto py-4 theme-sidebar-footer">
-		<span class="col">
+	<div class="c-sidebar__footer">
+		<span class="c-sidebar__footer__content">
 			{{#if sidebar.footer}}
 				{{{sidebar.footer}}}
 			{{else}}

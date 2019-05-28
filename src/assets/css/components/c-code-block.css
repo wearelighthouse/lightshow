@@ -1,18 +1,20 @@
-.i-code-block {
+.c-code-block {
 	position: relative;
 	background: #f7f7f7;
 	border-color: #f7f7f7;
 	margin: 10px 0 20px;
 	border-radius: 0;
 }
-.i-code-block + .i-code-block {
+
+.c-code-block + .c-code-block {
 	margin-top: -17px;  /* = border - margin */
 }
-.i-example + .i-code-block {
+
+.c-example + .c-code-block {
 	margin-top: -23px;  /* = example margin + border */
 }
 
-.i-code-block__lang {
+.c-code-block__lang {
 	display: block;
 	width: 100%;
 	margin: 0;
@@ -27,14 +29,16 @@
 	border: none;
 	user-select: none;
 }
-.i-code-block__lang.-collapsible {
+
+.c-code-block__lang.-collapsible {
 	margin-left: 0;
 	cursor: pointer;
 }
-.i-code-block__lang:focus {
+
+.c-code-block__lang:focus {
 	outline: none;
 }
 
-.i-code-block__content {
+.c-code-block__content {
 	padding: 15px 25px 25px;
 }

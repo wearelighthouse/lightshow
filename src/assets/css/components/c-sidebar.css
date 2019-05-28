@@ -1,0 +1,76 @@
+.c-sidebar__header {
+
+}
+
+.c-sidebar__title {
+	line-height: 40px;
+}
+
+.c-sidebar__logo {
+	vertical-align: bottom;
+}
+
+.c-sidebar__category__title {
+	font-size: 1.3em;
+	font-weight: 500;
+	margin-top: 1em;
+	margin-bottom: .5em;
+}
+
+.c-sidebar__item {
+	display: block;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+.c-sidebar__item:hover {
+	text-decoration: none;
+}
+
+.c-sidebar__item {
+	border-bottom: 1px solid transparent;
+}
+
+.c-sidebar__item:hover {
+	border-bottom-color: currentColor;
+}
+
+
+/**
+ * Sidebar search filtering
+ */
+
+.c-hidden-by-filter {
+	display: none !important;
+}
+.c-shown-by-filter {
+	display: block !important;
+}
+.c-sidebar-list-group.i-filtered .collapse {
+	display: block;
+	height: auto !important;
+}
+
+
+/**
+ * No results filter
+ */
+
+.c-sidebar__filter--no-results {
+	display: none;
+}
+.c-sidebar-list-group.i-hidden-by-filter ~ .c-sidebar-filter-no-results {
+	display: block;
+}
+.c-sidebar-list-group.i-shown-by-filter ~ .c-sidebar-filter-no-results {
+	display: none;
+}
+
+
+/**
+ * Footer
+ */
+
+.c-sidebar__footer {
+	margin-top: auto;
+}

@@ -1,12 +1,12 @@
-.i-example {
+.c-example {
 	margin: 20px 0;
 }
 
-.i-example--standard {
+.c-example--standard {
 	border: 3px solid #f7f7f7;
 }
 
-.i-example__heading {
+.c-example__heading {
 	margin: 0;
 	padding: 0.5em;
 	font-size: 0.8em;
@@ -15,21 +15,21 @@
 	color: #888;
 }
 
-.i-example--standard > .i-example__body {
+.c-example--standard > .c-example__body {
 	padding: 25px 35px;
 }
 
-.i-example iframe {
+.c-example iframe {
 	width: 100%;
 	border: none;
 }
 
-.i-example--typography {
+.c-example--typography {
 	border: none;
 	background-color: initial;
 	width: 100vw;
 }
 
-.i-example--typography > .i-example__heading{
+.c-example--typography > .c-example__heading {
   display: none;
 }

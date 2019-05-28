@@ -171,8 +171,8 @@ class Generator {
 			// Replaces <example> tags with <iframe> tags
 			doc.description = doc.description.replace(
 				/<example name="([^"]+)" class="([^"]+)"( height="\d+")?><\/example>/g,
-				`<div class="i-example i-example--$2 i-example--$1">
-					<h5 class="i-example__heading">
+				`<div class="c-example c-example--$2 c-example--$1">
+					<h5 class="c-example__heading">
 						<a
 							href="${doc.slug}-$1.html"
 							target="_blank"
@@ -185,9 +185,9 @@ class Generator {
 							Example
 						</a>
 					</h5>
-					<div class="i-example__body">
+					<div class="c-example__body">
 						<div
-							class="i-example__iframe"
+							class="c-example__iframe"
 							lazyframe
 							data-src="${doc.slug}-$1.html"
 							data-initinview="true"

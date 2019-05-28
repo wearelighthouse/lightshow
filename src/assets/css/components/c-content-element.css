@@ -1,0 +1,18 @@
+.c-content-element {
+	margin: -1px 0 10px;  /* -1px to counteract padding-top:1px on .c-page-content */
+	padding: 100px 20px 40px;
+	background: #fff;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.c-content-element__title {
+	margin-top: 0;
+	font-size: 1.75em;
+	font-weight: 600;
+}
+
+@media (min-width: 992px) {
+	.c-content-element {
+		padding: 50px 60px;
+	}
+}

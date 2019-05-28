@@ -19,6 +19,7 @@
 
 .c-content-element__source__label {
 	text-transform: uppercase;
+	font-weight: 600;
 }
 
 @media (min-width: 992px) {

@@ -176,10 +176,8 @@ class Generator {
 						<a
 							href="${doc.slug}-$1.html"
 							target="_blank"
-							class="plain-link"
-							data-toggle="tooltip"
-							data-placement="top"
-							title="Open in a new window"
+							class="c-example__heading__button"
+							data-tooltip="Open in a new window"
 						>
 							<i class="fa fa-external-link-square fa-fw"></i>
 							Example

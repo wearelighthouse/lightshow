@@ -6,10 +6,9 @@
 
 @import "components/c-code-block.css";
 @import "components/c-copy-button.css";
-@import "components/c-library.css";
+@import "components/c-content-element.css";
 @import "components/c-example.css";
 @import "components/c-muted.css";
-@import "components/c-pad.css";
 @import "components/c-page.css";
 @import "components/c-position-container.css";
 @import "components/c-search-input.css";

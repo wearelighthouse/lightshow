@@ -19,8 +19,8 @@ renderer.heading = function(text, level) {
 		var slug = _.kebabCase(text);
 		var link = '<a href="#' + slug + '" class="icon-link c-section__link -heading"></a>';
 
-		html = '<div id="' + slug + '" class="i-pad-top-5 i-section">'
-			+ '<h' + level + ' class="i-pad-top-3 c-position-container">'
+		html = '<div id="' + slug + '" class="c-section">'
+			+ '<h' + level + ' class="c-position-container">'
 			+ link + text
 			+ '</h' + level + '>'
 			+ '</div>';
@@ -48,7 +48,7 @@ renderer.code = function(code, name) {
 <div class="c-code-block">
 	<button type="button" class="c-code-block__lang ${collapsible}">${icon} ${lang}</button>
 	<div class="c-code-block__content ${initialState}">
-		<button type="button" class="btn btn-outline-primary btn-sm i-copy-button" data-clipboard-text="${escaped}">Copy</button>
+		<button type="button" class="c-copy-button" data-clipboard-text="${escaped}">Copy</button>
 		<pre class="mb-0"><code class="lang-${highlightLang}">${escaped}</code></pre>
 	</div>
 </div>`;

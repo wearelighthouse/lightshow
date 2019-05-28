@@ -1,9 +1,14 @@
-.i-copy-button {
+.c-copy-button {
 	position: absolute;
-	top: 5px;
-	right: 5px;
+	top: .5rem;
+	right: .5rem;
 	font-size: 0.8em;
 	font-weight: 500;
 	color: #888;
-	border-color: transparent;
+}
+
+.c-copy-button:focus,
+.c-copy-button:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }

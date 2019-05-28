@@ -7,16 +7,13 @@
 		});
 		hljs.initHighlighting();
 
-		// Bootstrap tooltips
-		$('[data-toggle="tooltip"]').tooltip();
-
 		// Click-to-copy
 		(function() {
 			var elements = document.querySelectorAll('[data-clipboard-text]');
 			var clipboard = new Clipboard(elements);
 
 			clipboard.on('success', function(e) {
-				setText($(e.trigger), 'Copied!');
+				setText($(e.trigger), 'Copied to clipboard!');
 			});
 			clipboard.on('error', function(e) {
 				setText($(e.trigger), 'Error!');
@@ -112,6 +109,7 @@
 			var $lang = $(this);
 			$lang.find('i').toggleClass('fa-caret-right').toggleClass('fa-caret-down');
 			$lang.siblings('.c-code-block__content').toggleClass('hidden');
+			$lang.toggleClass('expanded');
 		});
 
 	});

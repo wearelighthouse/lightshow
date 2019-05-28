@@ -7,8 +7,18 @@
 
 .c-content-element__title {
 	margin-top: 0;
-	font-size: 1.75em;
-	font-weight: 600;
+	font-size: 2em;
+	font-weight: 500;
+}
+
+.c-content-element__source {
+	font-family: "Source Code Pro", "Courier New", Courier, monospace;
+	font-size: 14px;
+	color: #888;
+}
+
+.c-content-element__source__label {
+	text-transform: uppercase;
 }
 
 @media (min-width: 992px) {

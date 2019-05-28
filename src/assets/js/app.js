@@ -102,16 +102,16 @@
 		});
 
 		// Mobile nav select
-		$('.i-nav-select').change(function() {
+		$('.c-nav-select').change(function() {
 			var slug = $(this).find('option:selected').val();
 			window.location.hash = slug;
 		});
 
 		// Code block toggle
-		$('.i-code-block__lang.-collapsible').click(function() {
+		$('.c-code-block__lang.-collapsible').click(function() {
 			var $lang = $(this);
 			$lang.find('i').toggleClass('fa-caret-right').toggleClass('fa-caret-down');
-			$lang.siblings('.i-code-block__content').toggleClass('hidden');
+			$lang.siblings('.c-code-block__content').toggleClass('hidden');
 		});
 
 	});

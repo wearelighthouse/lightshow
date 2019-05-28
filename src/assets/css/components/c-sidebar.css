@@ -10,28 +10,31 @@
 	vertical-align: bottom;
 }
 
-.c-sidebar__category__title {
-	font-size: 1.3em;
-	font-weight: 500;
-	margin-top: 1em;
-	margin-bottom: .5em;
+.c-sidebar__item-list {
+	padding-left: 0;
 }
 
 .c-sidebar__item {
 	display: block;
-	margin-top: .5em;
-	margin-bottom: .5em;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
 }
 
-.c-sidebar__item:hover {
-	text-decoration: none;
+.c-sidebar__category {
+	margin-top: 1.5rem;
 }
 
-.c-sidebar__item {
+.c-sidebar__category__title {
+	font-size: 1.3em;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+
+.c-sidebar__link {
 	border-bottom: 1px solid transparent;
 }
 
-.c-sidebar__item:hover {
+.c-sidebar__link:hover {
 	border-bottom-color: currentColor;
 }
 

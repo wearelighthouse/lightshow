@@ -7,9 +7,9 @@
 
 <div class="c-sidebar__search c-search">
 	<div class="c-search__input">
-		<input id="search-filter" name="filter" type="search" placeholder="Search" class="form-control c-sidebar-item-filter">
+		<input id="search-filter" name="filter" type="search" placeholder="Search" class="form-control c-sidebar__item-filter">
 		<label for="search-filter" class="search-input-icon icon-search"></label>
-		<button type="button" class="i-search-input-reset" aria-label="Clear">
+		<button type="button" class="c-search-input-reset" aria-label="Clear">
 			<i class="icon-cross"></i>
 		</button>
 	</div>
@@ -20,25 +20,27 @@
 		<div class="c-sidebar__category">
 
 			<h5
-				class="c-sidebar__category__title"
+				class="c-sidebar__category__title c-sidebar__item"
 				data-filter-value="{{#each docs}} {{name}} {{/each}}"
 			>
-				<a href="#category-{{slug}}" class="c-sidebar__item">
+				<a href="#category-{{slug}}" class="c-sidebar__link">
 					{{key}}
 				</a>
 			</h5>
 
-			<div>
+			<ul class="c-sidebar__item-list">
 				{{#each docs}}
-					<a
-						href="#{{slug}}"
-						class="c-sidebar__item"
-						data-filter-value="{{name}}"
-					>
-						<span>{{name}}</span>
-					</a>
+					<li class="c-sidebar__item">
+						<a
+							href="#{{slug}}"
+							class="c-sidebar__link"
+							data-filter-value="{{name}}"
+						>
+							{{name}}
+						</a>
+					</li>
 				{{/each}}
-			</div>
+			</ul>
 
 		</div>
 	{{/each}}

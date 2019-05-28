@@ -31,7 +31,7 @@
 		})();
 
 		// Search filter
-		$('.i-sidebar-item-filter').keyup(function(event) {
+		$('.c-sidebar__item-filter').keyup(function(event) {
 			var $input = $(this);
 			var query = $input.val().trim();
 			var selector = query ? '[data-filter-value*="' + query + '" i]' : '[data-filter-value]';
@@ -41,20 +41,20 @@
 				resetSearch($input);
 			}
 
-			$input.parent('.i-search-input').toggleClass('has-value', !!query);
+			$input.parent('.c-search-input').toggleClass('has-value', !!query);
 
-			$('.i-page__sidebar [data-filter-value]').css('display', 'none');
-			$('.i-page__sidebar ' + selector).css('display', 'block');
+			$('.c-page__sidebar [data-filter-value]').css('display', 'none');
+			$('.c-page__sidebar ' + selector).css('display', 'initial');
 		});
 
 		// Search filter reset
 		function resetSearch($input) {
-			$input.siblings('.i-sidebar-item-filter').val('');
-			$input.parent('.i-search-input').removeClass('has-value');
-			$('.i-page__sidebar [data-filter-value]').css('display', 'block');
+			$input.siblings('.c-sidebar-item-filter').val('');
+			$input.parent('.c-search-input').removeClass('has-value');
+			$('.c-page__sidebar [data-filter-value]').css('display', 'block');
 		}
 
-		$('.i-search-input-reset').click(function() {
+		$('.c-search-input-reset').click(function() {
 			resetSearch($(this));
 		});
 

@@ -16,7 +16,7 @@ var extensions = [].concat(
 
 var defaultMatchExtensions = new RegExp(`\\.(${extensions.join('|')})$`);
 var defaultExcludeDirectories = ['.git', 'node_modules'];
-var defaultNamesFilter = (name) => {
+var defaultNamesFormat = (name) => {
 	return name
 	  .replace(/[_-]/g, ' ')
 		.split(' ')
@@ -39,7 +39,7 @@ function generate(params) {
 	options.match = options.match || defaultMatchExtensions;
 	options.excludeDir = defaultExcludeDirectories.concat(options.excludeDir);
 	options.cssFilename = pickCssFile(options.theme.css);
-	options.namesFilter = eval(options.namesFilter) || defaultNamesFilter;
+	options.namesFormat = eval(options.namesFormat) || defaultNamesFormat;
 
 	['match', 'excludeDir'].forEach(name => {
 		options[name] = typeof options[name] == 'string' ? new RegExp(options[name]) : options[name];

@@ -86,7 +86,7 @@ class Parser {
 
 		// If the name isn't set, and the file is a .md, just use the (cleaned up by namesFilter filename
 		if (!name && path.extname(filepath) === '.md') {
-			name = this.options.namesFilter(path.parse(filepath).name);
+			name = this.options.namesFormat(path.parse(filepath).name);
 		}
 
 		if (!name) {
@@ -96,7 +96,7 @@ class Parser {
 
 		var component = new Component();
 		component.setName(name);
-		component.setCategory(markdown.data.category || this.options.namesFilter(path.basename(path.dirname(filepath))));
+		component.setCategory(markdown.data.category || this.options.namesFormat(path.basename(path.dirname(filepath))));
 		component.setFilepath(filepath);
 
 		var metadata = _.omit(markdown.data, ['name', 'category']);

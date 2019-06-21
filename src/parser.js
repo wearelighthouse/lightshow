@@ -41,6 +41,7 @@ class Parser {
 					content = content.replace(/\r\n/g, '\n');  // Replaces Windows CRLF with Unix newlines
 
 					let language = path.extname(filepath).substr(1);
+					console.log(path.basename(path.dirname(filepath)));
 					docs = docs.concat(this.parse(content, language, filepath));
 				}
 				catch (e) {
@@ -89,7 +90,7 @@ class Parser {
 
 		var component = new Component();
 		component.setName(markdown.data.name);
-		component.setCategory(markdown.data.category);
+		component.setCategory(markdown.data.category || path.basename(path.dirname(filepath)));
 		component.setFilepath(filepath);
 
 		var metadata = _.omit(markdown.data, ['name', 'category']);

@@ -41,7 +41,7 @@ class Parser {
 					content = content.replace(/\r\n/g, '\n');  // Replaces Windows CRLF with Unix newlines
 
 					let language = path.extname(filepath).substr(1);
-					console.log(path.basename(path.dirname(filepath)));
+					//console.log(path.basename(path.dirname(filepath)));
 					docs = docs.concat(this.parse(content, language, filepath));
 				}
 				catch (e) {
@@ -82,15 +82,21 @@ class Parser {
 		}
 
 		var markdown = matter(docBlock);
+		var name = markdown.data.name;
 
-		if (!markdown.data.name) {
-			// A component must have a name
+		// If the name isn't set, and the file is a .md, just use the (cleaned up by namesFilter filename
+		if (!name && path.extname(filepath) === '.md') {
+			name = this.options.namesFilter(path.parse(filepath).name);
+		}
+
+		if (!name) {
+			// A component must have a name!
 			return null;
 		}
 
 		var component = new Component();
-		component.setName(markdown.data.name);
-		component.setCategory(markdown.data.category || path.basename(path.dirname(filepath)));
+		component.setName(name);
+		component.setCategory(markdown.data.category || this.options.namesFilter(path.basename(path.dirname(filepath))));
 		component.setFilepath(filepath);
 
 		var metadata = _.omit(markdown.data, ['name', 'category']);

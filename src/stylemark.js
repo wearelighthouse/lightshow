@@ -16,6 +16,13 @@ var extensions = [].concat(
 
 var defaultMatchExtensions = new RegExp(`\\.(${extensions.join('|')})$`);
 var defaultExcludeDirectories = ['.git', 'node_modules'];
+var defaultNamesFilter = (name) => {
+	return name
+	  .replace(/[_-]/g, ' ')
+		.split(' ')
+		.map(w =>  w.substring(0,1).toUpperCase()+ w.substring(1))
+		.join(' ');
+}
 
 function generate(params) {
 	var input = path.resolve(params.input);
@@ -32,6 +39,7 @@ function generate(params) {
 	options.match = options.match || defaultMatchExtensions;
 	options.excludeDir = defaultExcludeDirectories.concat(options.excludeDir);
 	options.cssFilename = pickCssFile(options.theme.css);
+	options.namesFilter = eval(options.namesFilter) || defaultNamesFilter;
 
 	['match', 'excludeDir'].forEach(name => {
 		options[name] = typeof options[name] == 'string' ? new RegExp(options[name]) : options[name];

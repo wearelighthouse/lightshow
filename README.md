@@ -163,6 +163,25 @@ webpackAppPath: For Webpack apps (esp. React, Angular, etc.), this is the `outpu
 emberAppName: For Ember apps, this is the name of the Ember app exported to the window object
 
 order: See Ordering section
+
+namesFormat: Callback to generate component and category names from folder and filenames if not specified in frontmatter
+```
+
+
+#### Automatic Category and Naming
+
+If no category is specified in a component's frontmatter, if will be pulled from the containing folder's name. If no name is specified for a component's frontmatter, and it's a _markdown file_ (`.md` etc.), it's filename will be used.  
+
+The namesFormat setting is a callback function used to clean up names and/or ignore specific markdown files. By default:
+
+```
+name => name
+    .replace('/(README)|(LICENSE)/i', '')
+    .replace(/[_-]/g, ' ')
+    .split(' ')
+    .map(w =>  w.substring(0, 1).toUpperCase() + w.substring(1))
+    .join(' ');
+}
 ```
 
 

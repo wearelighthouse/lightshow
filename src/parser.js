@@ -66,7 +66,7 @@ class Parser {
 	 */
 	parse(content, language, filepath) {
 		var components = _(getDocBlocks(content, language))
-			.map(docBlock => this._parseDocBlock(docBlock, filepath))
+			.map(docBlock => this._parseDocBlock(docBlock, filepath, language))
 			.filter()
 			.thru(Component.merge)
 			.value();
@@ -74,7 +74,7 @@ class Parser {
 		return components;
 	}
 
-	_parseDocBlock(docBlock, filepath) {
+	_parseDocBlock(docBlock, filepath, language) {
 
 		if (!_.isString(docBlock)) {
 			// Malformed docblock
@@ -85,7 +85,7 @@ class Parser {
 		var name = markdown.data.name;
 
 		// If the name isn't set, and the file is a .md, just use the (cleaned up by namesFilter filename
-		if (!name && path.extname(filepath) === '.md') {
+		if (!name && isMarkdown(language)) {
 			name = this.options.namesFormat(path.parse(filepath).name);
 		}
 
